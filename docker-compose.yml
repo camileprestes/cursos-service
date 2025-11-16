@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres-cursos
+    environment:
+      POSTGRES_USER: cursos
+      POSTGRES_PASSWORD: cursos
+      POSTGRES_DB: cursosdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq-cursos
+    ports:
+      - "5672:5672"   # porta usada pelos serviços
+      - "15672:15672" # painel web
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+
+  minio:
+    image: minio/minio
+    container_name: minio-cursos
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"   # API (S3)
+      - "9001:9001"   # Console web
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    volumes:
+      - minio_data:/data
+
+volumes:
+  postgres_data:
+  minio_data:
