@@ -34,4 +34,13 @@ public record CursoRequestDTO(
         @NotNull(message = "O ID do instrutor não pode ser nulo.")
         Long instrutorId
 ) {
+        public String getCodigo() { return codigo; }
+        public String getTitulo() { return titulo; }
+        public String getDescricao() { return descricao; }
+        public Integer getDuracaoEstimada() { return duracaoEstimada; }
+        public Integer getXpOferecido() { return xpOferecido; }
+        public NivelDificuldade getNivelDificuldade() { return nivelDificuldade; }
+        public String getPreRequisitos() { return preRequisitos; }
+        public Long getCategoriaId() { return categoriaId; }
+        public Long getInstrutorId() { return instrutorId; }
 }
