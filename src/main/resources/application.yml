@@ -17,14 +17,20 @@ spring:
     enabled: true
     baseline-on-migrate: true
 
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: admin
-    password: admin
+
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: admin
+  password: admin
+  exchange:
+    name: cursos-exchange
+    exchange:
+      name: cursos-exchange
 
 minio:
   endpoint: http://localhost:9000
   access.key: minio
   secret.key: minio123
   bucket.name: cursos-materiais
+

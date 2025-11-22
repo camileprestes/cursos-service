@@ -85,10 +85,10 @@ class CursoServiceTest {
         assertEquals(cursoResponseDTO.id(), resultado.id());
         assertEquals(cursoResponseDTO.titulo(), resultado.titulo());
 
-        // Verifica se os métodos dos mocks foram chamados
-        verify(categoriaRepository, times(1)).findById(1L);
-        verify(instrutorRepository, times(1)).findById(1L);
-        verify(cursoRepository, times(1)).save(any(Curso.class));
-        verify(eventPublisher, times(1)).publish(cursoSalvo, "curso.criado");
+    // Verifica se os métodos dos mocks foram chamados
+    verify(categoriaRepository, times(1)).findById(1L);
+    verify(instrutorRepository, times(1)).findById(1L);
+    verify(cursoRepository, times(1)).save(any(Curso.class));
+    verify(eventPublisher, times(1)).publish(any(com.camile.cursos_service.dto.event.CursoEventDTO.class), eq("curso.criado"));
     }
 }

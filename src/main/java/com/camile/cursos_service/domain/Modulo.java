@@ -27,7 +27,7 @@ public class Modulo {
     @Column(nullable = false, length = 200)
     private String titulo;
 
-    @Lob // Large Object - para conteúdos de texto mais longos
+    @Column(columnDefinition = "text")
     private String conteudo;
 
     @Enumerated(EnumType.STRING)
