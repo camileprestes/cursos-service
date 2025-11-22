@@ -1,6 +1,9 @@
 package com.camile.cursos_service.domain;
 
+import com.camile.cursos_service.domain.enums.NivelDificuldade;
 import jakarta.persistence.*;
+
+import java.util.List;
 import lombok.*;
 
 @Entity
@@ -26,16 +29,21 @@ public class Curso {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    @Column(nullable = false)
-    private Long instrutorId; // vem do MS Usuários
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "instrutor_id")
+    private Instrutor instrutor; // Temporário, até o MS Usuários ficar pronto
 
     private Integer duracaoEstimada; // horas
     private Integer xpOferecido;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String nivelDificuldade; // iniciante/intermediário/avançado
+    private NivelDificuldade nivelDificuldade;
 
     private Boolean ativo = true;
 
     private String preRequisitos;
+
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Modulo> modulos;
 }
